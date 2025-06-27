@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe {
+    private String id;
     private String description;
     private String name;
     private List<Ingredient> ingredientList = new ArrayList<>();
     private double cookTimeInMinutes;
     private MealType mealType;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(final String id) {
+        this.id = id;
+    }
     public String getDescription() {
         return description;
     }
