@@ -1,12 +1,11 @@
 # logged hours
 ## june 27
-10:30 reading about the assessment 
 
-10:40 made notes
+10:30 10:40 reading 
 
-11:01 Created spring boot project
+10:40 11:00 made notes
 
-11:30 Have all the general expected endpoints ready together with models
+11:01 11:30 Created spring boot project and Have all the general expected endpoints ready
 
 13:00 13:15 Reading about test containers and installing docker
 
