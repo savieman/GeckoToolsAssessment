@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  some-postgres:
+    image: amd64/postgres
+    container_name: some-postgress
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "recipedatabase"
+      POSTGRES_PASSWORD: "mysecretpassword"
+    restart: unless-stopped
