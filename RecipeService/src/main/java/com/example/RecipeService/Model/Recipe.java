@@ -1,21 +1,34 @@
 package com.example.RecipeService.Model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Recipe {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private String name;
+    @Column(name = "ingredient")
+    @ManyToMany
     private List<Ingredient> ingredientList = new ArrayList<>();
+    @Column(nullable = false)
     private double cookTimeInMinutes;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-    public long getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
     public String getDescription() {
