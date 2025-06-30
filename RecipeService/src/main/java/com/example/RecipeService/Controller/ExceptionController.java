@@ -20,8 +20,8 @@ public class ExceptionController {
     }
 
     class Response {
-        String status;
-        String reason;
+        private String status;
+        private String reason;
 
         public String getStatus() {
             return status;

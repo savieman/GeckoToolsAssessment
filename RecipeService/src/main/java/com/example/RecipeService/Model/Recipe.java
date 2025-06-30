@@ -1,7 +1,6 @@
 package com.example.RecipeService.Model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,8 @@ public class Recipe {
     private String description;
     @Column(nullable = false)
     private String name;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Ingredient> ingredientList = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Ingredient> ingredients = new ArrayList<>();
     @Column(nullable = false)
     private double cookTimeInMinutes;
     @Column(nullable = false)
@@ -39,12 +38,12 @@ public class Recipe {
         this.name = name;
     }
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredientList(final List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngredients(final List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public double getCookTimeInMinutes() {

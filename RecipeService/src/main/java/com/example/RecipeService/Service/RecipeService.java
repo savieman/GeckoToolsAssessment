@@ -1,10 +1,12 @@
 package com.example.RecipeService.Service;
 
+import com.example.RecipeService.Model.MealType;
 import com.example.RecipeService.Model.Recipe;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +20,17 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
+    public List<Recipe> searchRecipes(final String name,
+                                      final String ingrdientName,
+                                      final MealType mealType,
+                                      final Double cookTimeInMinutes) {
+        List<Recipe> recipes = recipeRepository.queryRecipes(name,
+                ingrdientName,
+                mealType,
+                cookTimeInMinutes);
+        return recipes;
+    }
+
     public Recipe getRecipe(final Long id) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
         if (recipe.isPresent()) {
@@ -27,10 +40,10 @@ public class RecipeService {
     }
 
     public List<Recipe> getRecipesByRecipeName(final String recipeName) {
-        Optional<List<Recipe>> recipes = recipeRepository.findRecipesByName(recipeName);
-        if (recipes.isPresent()) {
-            return recipes.get();
-        }
+//        Optional<List<Recipe>> recipes = recipeRepository.findRecipesByName(recipeName);
+//        if (recipes.isPresent()) {
+//            return recipes.get();
+//        }
         throw new EntityNotFoundException();
     }
 
