@@ -12,14 +12,14 @@ public class ExceptionController {
 
     @ExceptionHandler({EntityNotFoundException.class})
     public ResponseEntity<Object> handleEntityNotFoundException(final EntityNotFoundException entityNotFoundException) {
-        Response response = new Response();
-        response.status = HttpStatus.NOT_FOUND.name();
-        response.reason = "Entity not found";
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.status = HttpStatus.NOT_FOUND.name();
+        errorResponse.reason = "Entity not found";
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    class Response {
+    class ErrorResponse {
         private String status;
         private String reason;
 
