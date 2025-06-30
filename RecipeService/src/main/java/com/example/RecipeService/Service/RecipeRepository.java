@@ -25,8 +25,4 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             @Param("mealType") MealType mealType,
             @Param("cookTimeInMinutes") Double cookTimeInMinutes
     );
-//    Optional<List<Recipe>> findRecipes (final String name,
-//    final String ingrdientName,
-//    final String mealType,
-//    final String cookTimeInMintes) {
 }
