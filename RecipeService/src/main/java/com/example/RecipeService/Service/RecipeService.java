@@ -16,11 +16,6 @@ public class RecipeService {
     @Autowired
     private RecipeRepository recipeRepository;
 
-
-    public List<Recipe> getALlRecipes() {
-        return recipeRepository.findAll();
-    }
-
     public List<Recipe> searchRecipes(final String name,
                                       final String ingrdientName,
                                       final MealType mealType,
@@ -43,15 +38,6 @@ public class RecipeService {
         }
         throw new EntityNotFoundException();
     }
-
-    public List<Recipe> getRecipesByRecipeName(final String recipeName) {
-//        Optional<List<Recipe>> recipes = recipeRepository.findRecipesByName(recipeName);
-//        if (recipes.isPresent()) {
-//            return recipes.get();
-//        }
-        throw new EntityNotFoundException();
-    }
-
 
     public Recipe createRecipe(final Recipe recipe) {
         recipeRepository.save(recipe);
