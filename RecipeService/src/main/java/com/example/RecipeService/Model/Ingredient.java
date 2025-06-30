@@ -6,8 +6,8 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Ingredient {
-    @Column(nullable = false)
     @Id
+    @Column(nullable = false)
     private String name;
 
     // For now I used just "amount" but with a real application this is too generic and units of measure would need to be taken into account like grams or cups etc.

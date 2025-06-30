@@ -1,7 +1,7 @@
 package com.example.RecipeService.Controller;
 
 import com.example.RecipeService.Model.Recipe;
-import com.example.RecipeService.Service.RecipeRepository;
+import com.example.RecipeService.Service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,37 +13,27 @@ import java.util.Optional;
 public class RecipeController {
 
     @Autowired
-    private RecipeRepository recipeRepository;
-//
-//    RecipeController(RecipeRepository repo) {
-//        this.recipeRepository = repo;
-//    }
+    private RecipeService recipeService;
 
     @GetMapping("/recipes")
     public List<Recipe> getRecipes() {
-        List<Recipe> recipeList = recipeRepository.findAll();
+        List<Recipe> recipeList = recipeService.getALlRecipes();
         return recipeList;
     }
 
     @GetMapping("/recipes/{id}")
-    public Recipe getRecipe(final @PathVariable String id) {
-        return null;
+    public Recipe getRecipe(final @PathVariable Long id) {
+        Recipe recipe = recipeService.getRecipe(id);
+        return recipe;
     }
 
     @PostMapping("/recipes")
     public Recipe createRecipe(final @RequestBody Recipe recipe) {
-        recipeRepository.save(recipe);
-        return recipe;
+        return recipeService.createRecipe(recipe);
     }
 
     @DeleteMapping("/recipes/{id}")
     public Recipe deleteRecipe(final @PathVariable Long id) {
-        Optional<Recipe> recipe = recipeRepository.findById(id);
-        if (recipe.isPresent()) {
-            recipeRepository.delete(recipe.get());
-            return recipe.get();
-        } else {
-            return null;
-        }
+       return this.recipeService.deleteRecipe(id);
     }
 }

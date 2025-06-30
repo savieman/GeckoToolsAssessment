@@ -1,6 +1,7 @@
 package com.example.RecipeService.Model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,7 @@ public class Recipe {
     private String description;
     @Column(nullable = false)
     private String name;
-    @Column(name = "ingredient")
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Ingredient> ingredientList = new ArrayList<>();
     @Column(nullable = false)
     private double cookTimeInMinutes;
@@ -23,14 +23,6 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
     public String getDescription() {
         return description;
     }
