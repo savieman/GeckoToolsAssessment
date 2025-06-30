@@ -3,6 +3,7 @@ package com.example.RecipeService.Service;
 import com.example.RecipeService.Model.MealType;
 import com.example.RecipeService.Model.Recipe;
 import jakarta.persistence.EntityNotFoundException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,10 @@ public class RecipeService {
                                       final String ingrdientName,
                                       final MealType mealType,
                                       final Double cookTimeInMinutes) {
+        if (StringUtils.isBlank(name) && StringUtils.isBlank(ingrdientName) && mealType == null && cookTimeInMinutes == null) {
+            return this.recipeRepository.findAll();
+        }
+
         List<Recipe> recipes = recipeRepository.queryRecipes(name,
                 ingrdientName,
                 mealType,

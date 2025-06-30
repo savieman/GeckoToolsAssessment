@@ -20,8 +20,7 @@ public class RecipeController {
                                    final @RequestParam(value = "ingredientName", required = false) String ingredientName,
                                    final @RequestParam(value = "mealType", required = false) MealType mealType,
                                    final @RequestParam(value = "cookTimeInMinutes", required = false) Double cookTimeInMinutes) {
-        List<Recipe> recipeList = recipeService.searchRecipes(name, ingredientName, mealType, cookTimeInMinutes);
-        return recipeList;
+        return recipeService.searchRecipes(name, ingredientName, mealType, cookTimeInMinutes);
     }
 
     @GetMapping("/recipes/{id}")
