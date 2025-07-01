@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,7 +63,7 @@ public class RecipeController {
                     @Schema(implementation = ExceptionController.ErrorResponse.class))})
     })
     @PostMapping("/recipes")
-    public Recipe createRecipe(final @RequestBody Recipe recipe) {
+    public Recipe createRecipe(final @RequestBody @Valid Recipe recipe) {
         return recipeService.createRecipe(recipe);
     }
 

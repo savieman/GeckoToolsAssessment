@@ -12,6 +12,10 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
+    public Ingredient() {
+
+    }
+
     public Ingredient(double amount, String name) {
         this.amount = amount;
         this.name = name;

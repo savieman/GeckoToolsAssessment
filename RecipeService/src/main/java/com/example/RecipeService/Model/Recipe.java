@@ -22,6 +22,10 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
+    public Recipe() {
+
+    }
+
     public Recipe(final Long id, final String description, final String name, final List<Ingredient> ingredients,
                   final double cookTimeInMinutes, final MealType mealType) {
         this.id = id;
