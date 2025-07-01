@@ -1,0 +1,32 @@
+<table cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Cook Time (min)</th>
+      <th>Meal Type</th>
+      <th>Ingredients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="recipeList$ | async as recipeList">
+      <tr *ngFor="let recipe of recipeList">
+        <td>{{ recipe.name }}</td>
+        <td>{{ recipe.description }}</td>
+        <td>{{ recipe.cookTimeInMinutes }}</td>
+        <td>{{ recipe.mealType }}</td>
+        <td>
+          <table style="width: 100%; border: none;">
+            <tr *ngFor="let ingredient of recipe.ingredients">
+              <td>- {{ ingredient.name }}: {{ ingredient.amount }}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<br>
+
+<button [routerLink]="['/recipe/create']">Add Recipe</button>

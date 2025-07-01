@@ -1,0 +1,29 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" />
+
+  <br><br>
+
+  <label for="description">Description:</label>
+  <input id="description" formControlName="description" />
+
+  <br><br>
+
+  <label for="cookTimeInMinutes">Cook Time (minutes):</label>
+  <input id="cookTimeInMinutes" formControlName="cookTimeInMinutes" type="number" />
+
+  <br><br>
+
+  <label for="mealType">Meal Type:</label>
+  <select id="mealType" formControlName="mealType">
+    <option *ngFor="let type of mealTypes" [value]="type">{{ type }}</option>
+  </select>
+
+  <br><br>
+
+  <br>
+
+  <button type="submit" [disabled]="recipeForm.invalid">Submit</button>
+
+</form>
