@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../service/recipe-service';
-import { Observable } from 'rxjs';
-import { Recipe } from '../model/recipe';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit, Signal } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+
+import { Recipe } from '../model/recipe';
+import { RecipeService } from '../service/recipe-service';
 
 @Component({
   selector: 'app-recipe-list-component',
   imports: [RouterModule, CommonModule, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './recipe-list-component.html',
   styleUrl: './recipe-list-component.scss'
 })
-export class RecipeListComponent implements OnInit {
-  recipeList$: Observable<Recipe[]> = new Observable();
+export class RecipeListComponent {
+  recipeListSignal!: Signal<Recipe[]>;
 
-  constructor(private recipeService: RecipeService) {}
-
-  ngOnInit(): void {
-    this.recipeList$ = this.recipeService.getRecipeList();
+  constructor(private recipeService: RecipeService) {
+     this.recipeListSignal = toSignal(
+      this.recipeService.getRecipeList(),
+      { initialValue: []}
+    );
   }
 }

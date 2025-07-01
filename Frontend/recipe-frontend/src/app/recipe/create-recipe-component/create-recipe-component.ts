@@ -56,12 +56,15 @@ export class CreateRecipeComponent {
 
   onSubmit(): void {
     if (this.recipeForm.valid) {
-      console.log('Submitted Recipe:', this.recipeForm.value);
       const stringifiedRecipe: string = JSON.stringify(this.recipeForm.getRawValue());
-      this.recipeService.createRecipe(JSON.parse(stringifiedRecipe)).subscribe(() => {
-        this.router.navigateByUrl("/recipe/list")
-      })
-      // You can pass this to a service to save it
+      this.recipeService.createRecipe(JSON.parse(stringifiedRecipe)).subscribe({
+        next: () => {
+          this.router.navigateByUrl("/recipe/list");
+        },
+        error: () => {
+          alert("Something went wrong with adding the recipe");
+        }
+      });
     } else {
       alert('Form is invalid');
     }

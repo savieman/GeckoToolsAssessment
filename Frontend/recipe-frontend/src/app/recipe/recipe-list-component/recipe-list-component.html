@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngIf="recipeList$ | async as recipeList">
+    <ng-container *ngIf="recipeListSignal() as recipeList">
       <tr *ngFor="let recipe of recipeList">
         <td>{{ recipe.name }}</td>
         <td>{{ recipe.description }}</td>
