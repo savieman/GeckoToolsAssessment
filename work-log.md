@@ -71,15 +71,44 @@ value mapping was incorrect): [com.example.RecipeService.Model.Recipe#0]
 
 18:20 18:30 Comitting all the files in singles commits that I hadn't committed yet
 
-## June 28
+## June 30
 12:30 12:35 setting things up
+
 12:35 13:30 fixing staleObjectexception and transcientObjectException
+
 13:45 14:00 Got all endpoints working to it's basic level except search
+
 14:00 14:12 added Exceptioncontroller to handle when entities are not found instead of getting an internal server error
+
 14:15 14:43 working on search / querying
+
 14:43 15:00 fix relationship between recipe and ingredient
+
 15:00 16:00 fixed search query
+
 16:00 16:17 made search query also list all the recipes when no queries are filled in
+
 16:30 16:50 implementing testcontainers 
+
 16:50 17:05 test containers working by adding missing postgresql dependency
+
 17:30 17:50 Added more swagger documentation
+
+## July 1
+09:45 10:49 Created unit tests for RecipeService.java
+
+10:49 11:05 Setup the necessities for unit tests for the controller
+
+13:15 14:00 Setting up unit tests for the RecipeController
+
+14:15 14:20 Setup a base for the front-end
+
+14:20 15:30 Solved all unit tests for the controller with help for some issues
+
+15:40 16:15 Fixed listing recipes in the front-end
+
+22:30 22:56 Have the front-end be able to create recipes
+
+22:56 22:05 Fix issue where ingredients with the same name were not possible
+
+22:05 23:30 Have the front-end use signals for listing the recipes
