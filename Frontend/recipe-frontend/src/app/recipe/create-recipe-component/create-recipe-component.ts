@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MealType } from '../model/meal-type';
+import { RecipeService } from '../service/recipe-service';
 
 @Component({
   selector: 'app-create-recipe-component',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './create-recipe-component.html',
   styleUrl: './create-recipe-component.scss'
 })
@@ -13,17 +17,21 @@ export class CreateRecipeComponent {
   mealTypes: string[] = Object.values(MealType);
 
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private recipeService: RecipeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.recipeForm = this.fb.group({
+    this.recipeForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       cookTimeInMinutes: [0, [Validators.required, Validators.min(1)]],
       mealType: ['', Validators.required],
-      // ingredients: this.fb.array([
-      //   this.createIngredient()
-      // ])
+      ingredients: this.formBuilder.array([
+        this.createIngredient()
+      ])
     });
   }
 
@@ -31,27 +39,31 @@ export class CreateRecipeComponent {
     return this.recipeForm.get('ingredients') as FormArray;
   }
 
-  // createIngredient(): FormGroup {
-  //   return this.fb.group({
-  //     name: ['', Validators.required],
-  //     amount: ['', Validators.required]
-  //   });
-  // }
+  createIngredient(): FormGroup {
+    return this.formBuilder.group({
+      name: ['', Validators.required],
+      amount: ['', Validators.required]
+    });
+  }
 
-  // addIngredient(): void {
-  //   this.ingredients.push(this.createIngredient());
-  // }
+  addIngredient(): void {
+    this.ingredients.push(this.createIngredient());
+  }
 
-  // removeIngredient(index: number): void {
-  //   this.ingredients.removeAt(index);
-  // }
+  removeIngredient(index: number): void {
+    this.ingredients.removeAt(index);
+  }
 
   onSubmit(): void {
     if (this.recipeForm.valid) {
       console.log('Submitted Recipe:', this.recipeForm.value);
+      const stringifiedRecipe: string = JSON.stringify(this.recipeForm.getRawValue());
+      this.recipeService.createRecipe(JSON.parse(stringifiedRecipe)).subscribe(() => {
+        this.router.navigateByUrl("/recipe/list")
+      })
       // You can pass this to a service to save it
     } else {
-      console.warn('Form is invalid');
+      alert('Form is invalid');
     }
   }
 }
