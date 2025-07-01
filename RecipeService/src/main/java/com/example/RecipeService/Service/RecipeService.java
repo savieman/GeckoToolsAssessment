@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,18 +16,18 @@ public class RecipeService {
     private RecipeRepository recipeRepository;
 
     public List<Recipe> searchRecipes(final String name,
-                                      final String ingrdientName,
+                                      final String ingredientName,
                                       final MealType mealType,
                                       final Double cookTimeInMinutes) {
-        if (StringUtils.isBlank(name) && StringUtils.isBlank(ingrdientName) && mealType == null && cookTimeInMinutes == null) {
+        if (StringUtils.isBlank(name) && StringUtils.isBlank(ingredientName) && mealType == null
+                && cookTimeInMinutes == null) {
             return this.recipeRepository.findAll();
         }
 
-        List<Recipe> recipes = recipeRepository.queryRecipes(name,
-                ingrdientName,
+        return recipeRepository.queryRecipes(name,
+                ingredientName,
                 mealType,
                 cookTimeInMinutes);
-        return recipes;
     }
 
     public Recipe getRecipe(final Long id) {
@@ -40,8 +39,7 @@ public class RecipeService {
     }
 
     public Recipe createRecipe(final Recipe recipe) {
-        recipeRepository.save(recipe);
-        return recipe;
+        return recipeRepository.save(recipe);
     }
 
     public Recipe deleteRecipe(final Long id) {

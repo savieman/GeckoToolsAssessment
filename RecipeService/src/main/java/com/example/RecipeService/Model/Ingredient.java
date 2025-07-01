@@ -12,6 +12,11 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
+    public Ingredient(double amount, String name) {
+        this.amount = amount;
+        this.name = name;
+    }
+
     // For now I used just "amount" but with a real application this is too generic and units of measure would need to be taken into account like grams or cups etc.
     @Column(nullable = false)
     private double amount;
