@@ -8,7 +8,7 @@ import { RecipeService } from '../service/recipe-service';
 
 @Component({
   selector: 'app-recipe-list-component',
-  imports: [RouterModule, CommonModule, AsyncPipe],
+  imports: [RouterModule, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './recipe-list-component.html',
   styleUrl: './recipe-list-component.scss'
