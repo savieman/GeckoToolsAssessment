@@ -1,4 +1,4 @@
-# GeckoToolsAssessment
+# GeckoTech Full-stack developer assessment
 
 # How to get Started
 
