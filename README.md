@@ -20,6 +20,7 @@ For the front-end some:
 
 ### How to run
 Navigate to `Frontend/recipe-frontend/`
+
 Then when it is your first time running the project run
 ```bash
 npm install
