@@ -19,7 +19,7 @@ public class ExceptionController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    class ErrorResponse {
+    static class ErrorResponse {
         private String status;
         private String reason;
 
