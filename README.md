@@ -36,7 +36,7 @@ After running the project make sure you have the microservice running on `localh
 
 # Approaches I took
 ## Back-end
-For the back-end first of all I chose to have two classes `Recipe.java` and `Ingredient.java`. I first planned on making a many-to-many relationship between them, but in the end I chose to have a one-to-many relationship between the Recipe and Ingredients. This way the relationship is less complex and when deleting a recipe, the ingredients will get deleted with it because of the `CascadeType.Remove`
+For the back-end first of all I chose to have two classes `Recipe.java` and `Ingredient.java`. I first planned on making a many-to-many relationship between them, but in the end I chose to have a one-to-many relationship between the Recipe and Ingredients. This way the relationship is less complex and when deleting a recipe, the ingredients will get deleted with it because of the `CascadeType.Remove` in `Recipe.java`
 
 Something else I've done is from the start setup an openapi swagger-ui page to be able to see all the endpoints and what payloads, parameters, variables and responses can be expected.
 
