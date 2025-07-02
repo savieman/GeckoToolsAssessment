@@ -48,8 +48,7 @@ public class RecipeController {
     })
     @GetMapping("/recipes/{id}")
     public Recipe getRecipe(final @PathVariable Long id) {
-        Recipe recipe = recipeService.getRecipe(id);
-        return recipe;
+        return recipeService.getRecipe(id);
     }
 
     @Operation(summary = "Create a recipe",
