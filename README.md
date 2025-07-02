@@ -19,23 +19,24 @@ For the front-end some:
 - Your favorite code editor
 
 ### How to run
-When it is your first time running the project do a 
+Navigate to `Frontend/recipe-frontend/`
+Then when it is your first time running the project run
 ```bash
 npm install
 ```
-Once everything is installed do a 
+Once everything is installed you can run the project by running the following
 ```bash 
 npm run start
 ```
-or if you have angular/cli installed run this in `Frontend/recipe-frontend/` 
+or if you have angular/cli installed you can also use
 ```bash
 ng serve
 ```
-After running the project make sure you have the microservice running on `localhost:8080`, if not you can edit on what port or domain you have the microservice in `proxy.conf.json` in the `/src` folder. When running the project head to your browser and go to `http://localhost:4200/` if everything went ok, it should route to `/recipe/list`
+After running the project make sure you have the microservice running on `localhost:8080`, if not, you can edit on what port or domain you have the microservice in `proxy.conf.json` in the `/src` folder. When running the project head to your browser and go to `http://localhost:4200/` if everything went ok, it should route to `/recipe/list`
 
 # Approaches I took
 ## Back-end
-For the back-end first of all I chose to have two classes `Recipe.java` and `Ingredients.java`. I first planned on making a many-to-many relationship between them, but in the end I chose to have a one-to-many relationship between the Recipe and Ingredients. This way the relationship is less complex and when deleting a recipe, the ingredients will get deleted with it because of the `CascadeType.Remove`
+For the back-end first of all I chose to have two classes `Recipe.java` and `Ingredient.java`. I first planned on making a many-to-many relationship between them, but in the end I chose to have a one-to-many relationship between the Recipe and Ingredients. This way the relationship is less complex and when deleting a recipe, the ingredients will get deleted with it because of the `CascadeType.Remove`
 
 Something else I've done is from the start setup an openapi swagger-ui page to be able to see all the endpoints and what payloads, parameters, variables and responses can be expected.
 
@@ -44,9 +45,9 @@ For integration testing I decided on doing that on the controller so that the en
 ## Front-end
 Because the assessment mentioned creating a front-end to be able to evaluate the use of observables and signals I chose to keep it very simple. I created a component that lists all the recipes at `/recipe/list` with a button that routes to `/recipe/create` to be able to create a recipe. After creating/submitting a recipe correctly, it'll head back to `/recipes/lists`. 
 
-I chose to use signals in the RecipeListComponent because a subscription was needed to the endpoint for getting recipes and this requires a bit less code than for example using an observable and the async pipe in the template. The biggest win however is having added `changeDetection: ChangeDetectionStrategy.OnPush,`. This stops the change detection for the component and will only update when the signal gets updated. This makes the component mucuh lighter. 
+I chose to use signals in the RecipeListComponent because a subscription was needed to the endpoint for getting recipes and this requires a bit less code than for example using an observable and the async pipe in the template. The biggest win however is having added `changeDetection: ChangeDetectionStrategy.OnPush,`. This stops the change detection for the component and will only update when the signal gets updated. This makes the component much lighter.
 
-For the create `CreateRecipeComponent` I chose to subscribe to the observable that posts the recipe to the microservice by on success navigating back to the `RecipeListComponent` and by on error having a simple alert. I've made sure to add the subscription to a subscription variable so that through the onDestroy lifecycle I can unsubscribe to the observable to prevent memoryleaks.
+For the create `CreateRecipeComponent` I chose to subscribe to the observable that posts the recipe to the microservice. By on success navigating back to the `RecipeListComponent` and by on error having a simple alert. I've made sure to add the subscription to a subscription variable so that through the onDestroy lifecycle I can unsubscribe from the observable to prevent memoryleaks.
 
 Another thing I also chose to do is use reactive forms in `CreateRecipeComponent`. Template driven forms might've been sufficient but I know in practice projects can change, validation can get more complicated and changing from template driven to reactive forms can be a lot of work on big projects.
 
