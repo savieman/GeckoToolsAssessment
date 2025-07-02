@@ -1,5 +1,6 @@
 package com.example.RecipeService.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Entity
 public class Recipe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +37,26 @@ public class Recipe {
         this.cookTimeInMinutes = cookTimeInMinutes;
         this.mealType = mealType;
     }
+
+    public Recipe(final String description, final String name, final List<Ingredient> ingredients,
+                  final double cookTimeInMinutes, final MealType mealType) {
+        this.description = description;
+        this.name = name;
+        this.ingredients = ingredients;
+        this.cookTimeInMinutes = cookTimeInMinutes;
+        this.mealType = mealType;
+    }
+
+    @JsonIgnore
+    public Long getId() {
+        return id;
+    }
+
+    @JsonIgnore
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getDescription() {
         return description;
