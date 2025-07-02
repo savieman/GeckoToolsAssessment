@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MealType } from '../model/meal-type';
 import { RecipeService } from '../service/recipe-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-recipe-component',
@@ -12,9 +13,10 @@ import { RecipeService } from '../service/recipe-service';
   templateUrl: './create-recipe-component.html',
   styleUrl: './create-recipe-component.scss'
 })
-export class CreateRecipeComponent {
+export class CreateRecipeComponent implements OnDestroy {
   recipeForm!: FormGroup;
   mealTypes: string[] = Object.values(MealType);
+  subscription: Subscription = new Subscription();
 
 
   constructor(
@@ -57,16 +59,20 @@ export class CreateRecipeComponent {
   onSubmit(): void {
     if (this.recipeForm.valid) {
       const stringifiedRecipe: string = JSON.stringify(this.recipeForm.getRawValue());
-      this.recipeService.createRecipe(JSON.parse(stringifiedRecipe)).subscribe({
+      this.subscription.add(this.recipeService.createRecipe(JSON.parse(stringifiedRecipe)).subscribe({
         next: () => {
           this.router.navigateByUrl("/recipe/list");
         },
         error: () => {
           alert("Something went wrong with adding the recipe");
         }
-      });
+      }));
     } else {
       alert('Form is invalid');
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
