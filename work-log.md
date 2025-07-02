@@ -112,3 +112,22 @@ value mapping was incorrect): [com.example.RecipeService.Model.Recipe#0]
 22:56 22:05 Fix issue where ingredients with the same name were not possible
 
 22:05 23:30 Have the front-end use signals for listing the recipes
+
+# July 2
+12:52 13:10 read about integration testing online and ask about it in the teams channel
+
+13:10 13:29 Have integration tests mostly working
+
+13:29 13:54 Fixed last issues I had with two integration tests
+
+14:10 14:15 Giving an update in the teams chat and making small improvements in the code
+
+14:15 14:30 Making more small improvements to the project
+
+14:45 15:20 Work on documentation
+
+15:20 15:25 Added unsubscribe in angular to prevent memory leaks
+
+15:30 16:20 Added documentation to README.md
+
+21:10 21:41 Editing documentation after a second glance
