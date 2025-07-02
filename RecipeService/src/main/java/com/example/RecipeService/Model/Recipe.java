@@ -28,16 +28,6 @@ public class Recipe {
 
     }
 
-    public Recipe(final Long id, final String description, final String name, final List<Ingredient> ingredients,
-                  final double cookTimeInMinutes, final MealType mealType) {
-        this.id = id;
-        this.description = description;
-        this.name = name;
-        this.ingredients = ingredients;
-        this.cookTimeInMinutes = cookTimeInMinutes;
-        this.mealType = mealType;
-    }
-
     public Recipe(final String description, final String name, final List<Ingredient> ingredients,
                   final double cookTimeInMinutes, final MealType mealType) {
         this.description = description;

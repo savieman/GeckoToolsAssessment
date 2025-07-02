@@ -48,7 +48,7 @@ class RecipeControllerTest {
         ingredients.add(breadIngredient);
         ingredients.add(cheeseIngredient);
 
-        recipe = new Recipe(1L, "A grilled sandwich with molten cheese in between", "Grilled Cheese",
+        recipe = new Recipe("A grilled sandwich with molten cheese in between", "Grilled Cheese",
                 ingredients, 5, MealType.BREAKFAST);
         recipes.add(recipe);
     }
